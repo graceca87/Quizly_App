@@ -1,30 +1,19 @@
 const MainAuthRouter = require('express').Router()
 
 
-// You can put all of your methods under a single .route like this: (instead of separating them like the below route methods)
+// You can put all of your methods under a single .route like this: (instead of separating them)
 MainAuthRouter.route('/register')
-    .get((req,res) => {
-    res.render('register')
-    })
-    .post((req,res) => {
-        res.send('Post Main Auth Router')
-    })
+// .get - this tells it to look in the register.view.js file for the logic on the get request
+    .get(require('./register.view'))
+// .post - looks in the register.js file for the logic on this post request
+    .post(require('./register'))
 //     .put('/', (req,res) => {
 //         res.send('Put Main Auth Router')
 //     })
 
+MainAuthRouter.route('/login')
+     .get(require('./login.view'))
 
-// MainAuthRouter.get('/', (req,res) => {
-//     res.send('Main Auth Router')
-// })
-
-// MainAuthRouter.post('/', (req,res) => {
-//     res.send('Post Main Auth Router')
-// })
-
-// MainAuthRouter.put('/', (req,res) => {
-//     res.send('Put Main Auth Router')
-// })
 
 // this makes it so we can put require('Express').Router() into other files and (ultimately goes back to run the the Express function) Makes it a part of the app. 
 module.exports = MainAuthRouter
